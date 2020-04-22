@@ -20,7 +20,7 @@ def states_given_id(id):
             found = states[s_id]
 
     return render_template('9-states.html',
-                           state=found_state)
+                           state=found)
 
 
 @app.teardown_appcontext
