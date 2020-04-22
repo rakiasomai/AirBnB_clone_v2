@@ -11,17 +11,12 @@ def states():
     return render_template('9-states.html', states=states)
 
 
-@app.route('/states/<id>')
-def states_given_id(id):
-    states = storage.all("State")
-    found = ""
-    for s_id in states:
-        if s_id == id:
-            found = states[s_id]
-
-    return render_template('9-states.html',
-                           state=found)
-
+@app.route("/states/<id>", strict_slashes=False)
+def states_id(id):
+    for state in storage.all("State").values():
+        if state.id == id:
+            return render_template("9-states.html", state=state)
+    return render_template("9-states.html")
 
 @app.teardown_appcontext
 def teardown(err):
